@@ -38,6 +38,7 @@ def paginated_posts(request):
         'has_more': page.has_next(),
     }
     
+    print(data)
     return Response(data)
 
 @api_view(['POST'])
