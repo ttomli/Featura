@@ -10,11 +10,17 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('username', 'email', 'id')
 
 class PostSerializer(serializers.ModelSerializer):
+    image_url = serializers.SerializerMethodField()
     author = UserSerializer()
     created_at = serializers.DateTimeField(required=False)
     class Meta:
         model = Post
-        fields = ('pk', 'title', 'content', 'created_at', 'author', 'upvotes', 'downvotes')
+        fields = ('pk', 'title', 'content', 'image_url', 'created_at', 'author', 'upvotes', 'downvotes')
+
+    def get_image_url(self, post):
+        request = self.context.get('request')
+        image_url = post.img.url
+        return request.build_absolute_uri(image_url)
 
     def validate_author(self, value):
         print(f"validate_author value: {value}")
