@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-+i%yx*h!d1p&*u$gnb4rvl(%y194^n3xo+6kf5z#25mv&9$z0y
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', "djangotest-g1bm.onrender.com", "featura.tech"]
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', "featura.onrender.com", "featura.tech"]
 
 # Application definition
 
