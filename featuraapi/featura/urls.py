@@ -9,6 +9,8 @@ urlpatterns = [
     path('posts/', views.paginated_posts, name='paginated-posts'),
     path('posts/create/', views.create_post, name='create-post'),
     path('posts/<int:post_id>/', views.view_post, name='view-post'),
+    path('posts/<int:post_id>/upvote/', views.make_upvote, name='make-upvote'),
+    path('posts/<int:post_id>/downvote/', views.make_downvote, name='make-downvote'),
     path('token/', 
           jwt_views.TokenObtainPairView.as_view(), 
           name ='token_obtain_pair'),
