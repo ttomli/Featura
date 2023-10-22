@@ -32,7 +32,7 @@ def paginated_posts(request):
     except EmptyPage:
         return Response({'posts': [], 'has_more': False})
 
-    serializer = PostSerializer(page, context={"request": request}, many=True)
+    serializer = PostSerializer(page, many=True)
     
     data = {
         'posts': serializer.data,
@@ -44,7 +44,7 @@ def paginated_posts(request):
 
 @api_view(['POST'])
 def create_post(request):
-    serializer = PostSerializer(data=request.data, context={"request": request})
+    serializer = PostSerializer(data=request.data)
     
     if serializer.is_valid():
         serializer.save(author=request.user, created_at=datetime.now().isoformat())
@@ -59,7 +59,7 @@ def view_post(request, post_id):
     except Post.DoesNotExist:
         return Response({'detail': 'Post not found'}, status=404)
     
-    serializer = PostSerializer(post, context={"request": request})
+    serializer = PostSerializer(post)
     return Response(serializer.data)
 
 @api_view(['UPDATE'])
@@ -67,7 +67,7 @@ def make_upvote(request, post_id):
     try:
         post = get_object_or_404(Post, id = post_id)
         post.make_upvote()
-        return Response(PostSerializer(post, context={"request": request}).data, status=200)
+        return Response(PostSerializer(post).data, status=200)
     except Post.DoesNotExist:
         return Response({}, status=status.HTTP_404_NOT_FOUND)
     
@@ -76,6 +76,6 @@ def make_downvote(request, post_id):
     try:
         post = get_object_or_404(Post, id = post_id)
         post.make_downvote()
-        return Response(PostSerializer(post, context={"request": request}).data, status=200)
+        return Response(PostSerializer(post).data, status=200)
     except Post.DoesNotExist:
         return Response({}, status=status.HTTP_404_NOT_FOUND)

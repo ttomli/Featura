@@ -8,7 +8,7 @@ import {
 } from "@material-tailwind/react";
 import { ArrowUpIcon, ArrowDownIcon } from '@heroicons/react/24/solid';
 
-export function BlogCard({ title, content, imagePath }) {
+export function BlogCard({ title, content }) {
     const [upvotes, setUpvotes] = useState(0);  // State to track upvotes
     const [downvotes, setDownvotes] = useState(0);  // State to track downvotes
 
@@ -21,10 +21,10 @@ export function BlogCard({ title, content, imagePath }) {
     };
 
 
-    console.log(imagePath); // Check the received image path
+    //console.log(imagePath); // Check the received image path
 
-    const baseUrl = 'http://127.0.0.1:8000/'; // Replace with the actual base URL of your server
-    const imageUrl = baseUrl + imagePath; // Combining the base URL with the received image path
+    // const baseUrl = 'http://127.0.0.1:8000/'; // Replace with the actual base URL of your server
+    // const imageUrl = baseUrl + imagePath; // Combining the base URL with the received image path
 
 
     return (
@@ -35,14 +35,14 @@ export function BlogCard({ title, content, imagePath }) {
                 color="transparent"
                 className="m-0 rounded-none"
             >
-                {/* <img
+                <img
                     src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80"
                     alt="ui/ux review check"
-                /> */}
-                <img
+                />
+                {/* <img
                     src={imageUrl}
                     alt="Content related"
-                />
+                /> */}
             </CardHeader>
             <CardBody>
                 <Typography variant="h4" color="blue-gray">

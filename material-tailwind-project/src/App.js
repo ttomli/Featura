@@ -26,7 +26,7 @@ export default function App() {
       fetch('http://127.0.0.1:8000/api/posts/')
         .then(response => response.json())
         .then(data => {
-          setCards(prevCards => [...prevCards, ...data.posts]);  // Append new posts to existing posts
+          setCards(prevCards => [...data.posts]);  // Append new posts to existing posts
           setHasMore(data.has_more);  // Update hasMore state
         })
         .catch(error => console.error('Error:', error));
