@@ -23,13 +23,17 @@ export function MessageDialog({ onClose }) {
         }
     };
 
+    const handleImageChange = (e) => {
+        //setImg(e.target.files[0]);
+    };
+
     return (
         <Dialog open={open} size="m" handler={() => setOpen(false)}>
             <div className="flex items-center justify-between">
                 <DialogHeader className="flex flex-col items-start">
                     {" "}
                     <Typography className="mb-1" variant="h4">
-                        New message to @{" "}
+                        What feature would you like to see?{" "}
                     </Typography>
                 </DialogHeader>
                 <svg
@@ -52,11 +56,15 @@ export function MessageDialog({ onClose }) {
                 </Typography>
                 <div className="grid gap-6">
                     <Typography className="-mb-1" color="blue-gray" variant="h6">
-                        Title
+                        Feature
                     </Typography>
                     <Input label="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
                     <Typography className="-mb-1" color="blue-gray" variant="h6">
-                        Description
+                        Image
+                    </Typography>
+                    <Input type="file" onChange={handleImageChange} />  {/* New input for image */}
+                    <Typography className="-mb-1" color="blue-gray" variant="h6">
+                        Content
                     </Typography>
                     <Textarea label="Description" value={description} onChange={(e) => setDescription(e.target.value)} />
                 </div>

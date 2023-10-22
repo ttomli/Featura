@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { DefaultSidebar } from "./sidebar";
 import { MessageDialog } from './message';
 import { CardGrid } from './CardGrid';
+import { Button } from "@material-tailwind/react";
 
 export default function App() {
 
 
+  const [role, setRole] = useState(null);  // New state variable for role
   const [cards, setCards] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -19,28 +21,6 @@ export default function App() {
     }
   };
 
-  // useEffect(() => {
-  //   fetch('http://127.0.0.1:8000/api/posts/')  // replace with your actual API endpoint
-  //     .then(response => {
-  //       console.log(response)
-  //       response.json()
-  //     })
-  //     .then(data => {
-  //       console.log(data)
-  //       const transformedData = data.map(post => ({
-  //         title: post.title,  // Adjust these properties according to your actual API response structure
-  //         description: post.content // Adjust these properties according to your actual API response structure
-  //       }));
-  //       setCards(transformedData);
-  //       setLoading(false);
-  //     })
-  //     .catch(error => console.error('Error:', error));
-  // }, []);
-
-  // if (loading) {
-  //   return <div>Loading...</div>;
-  // }
-
   useEffect(() => {
     if (hasMore) {  // Only fetch if there are more posts to fetch
       fetch('http://127.0.0.1:8000/api/posts/')
@@ -53,6 +33,18 @@ export default function App() {
     }
   }, [hasMore]);  // Dependency array, will refetch when hasMore changes
 
+  const handleRoleSelect = (selectedRole) => {
+    setRole(selectedRole);
+  }
+
+  if (role === null) {
+    return (
+      <div className="login-page">
+        <Button onClick={() => handleRoleSelect('admin')}>Admin</Button>
+        <Button onClick={() => handleRoleSelect('user')}>User</Button>
+      </div>
+    )
+  }
 
   return (
     <div className="relative flex min-h-screen w-full p-8">
