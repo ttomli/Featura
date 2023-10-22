@@ -7,7 +7,7 @@ import { Button } from "@material-tailwind/react";
 export default function App() {
 
 
-  const [role, setRole] = useState(null);  // New state variable for role
+  // const [role, setRole] = useState(null);  // New state variable for role
   const [cards, setCards] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -37,14 +37,14 @@ export default function App() {
     setRole(selectedRole);
   }
 
-  if (role === null) {
-    return (
-      <div className="login-page">
-        <Button onClick={() => handleRoleSelect('admin')}>Admin</Button>
-        <Button onClick={() => handleRoleSelect('user')}>User</Button>
-      </div>
-    )
-  }
+  // if (role === null) {
+  //   return (
+  //     <div className="login-page">
+  //       <Button onClick={() => handleRoleSelect('admin')}>Admin</Button>
+  //       <Button onClick={() => handleRoleSelect('user')}>User</Button>
+  //     </div>
+  //   )
+  // }
 
   return (
     <div className="relative flex min-h-screen w-full p-8">
