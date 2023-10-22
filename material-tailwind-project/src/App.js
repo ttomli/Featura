@@ -23,7 +23,7 @@ export default function App() {
 
   useEffect(() => {
     if (hasMore) {  // Only fetch if there are more posts to fetch
-      fetch('http://127.0.0.1:8000/api/posts/')
+      fetch('/api/posts/')
         .then(response => response.json())
         .then(data => {
           setCards(prevCards => [...data.posts]);  // Append new posts to existing posts
