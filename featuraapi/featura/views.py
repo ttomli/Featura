@@ -14,12 +14,13 @@ from .models import Post, Comment, Vote
 from .serializer import PostSerializer, CommentSerializer, VoteSerializer, UserSerializer
 from django.contrib.auth.models import User
 
+from django.shortcuts import get_object_or_404
+
 def index(request):
     return HttpResponse("Welcome to Featura front page")
 
 @api_view(['GET'])
 def paginated_posts(request):
-    print('posts function called')
     page_number = request.GET.get('page', 1)
     per_page = 10  # Number of posts per page
 
@@ -59,3 +60,21 @@ def view_post(request, post_id):
     
     serializer = PostSerializer(post)
     return Response(serializer.data)
+
+@api_view(['UPDATE'])
+def make_upvote(request, post_id):
+    try:
+        post = get_object_or_404(Post, id = post_id)
+        post.make_upvote()
+        return Response(PostSerializer(post).data, status=200)
+    except Post.DoesNotExist:
+        return Response({}, status=status.HTTP_404_NOT_FOUND)
+    
+@api_view(['UPDATE'])
+def make_downvote(request, post_id):
+    try:
+        post = get_object_or_404(Post, id = post_id)
+        post.make_downvote()
+        return Response(PostSerializer(post).data, status=200)
+    except Post.DoesNotExist:
+        return Response({}, status=status.HTTP_404_NOT_FOUND)

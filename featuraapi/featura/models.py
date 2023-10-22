@@ -10,6 +10,12 @@ class Post(models.Model):
     upvotes = models.IntegerField(default=0)
     downvotes = models.IntegerField(default=0)
 
+    def make_upvote(self):
+        self.upvotes += 1
+
+    def make_downvote(self):
+        self.downvotes += 1
+
     def total_votes(self):
         return self.upvotes.count() + self.downvotes.count()
     
