@@ -1,10 +1,13 @@
-#Featura
+# Featura
 
 Featura is a dynamic and interactive platform designed for community-driven feature voting, akin to Reddit. It empowers users to propose, discuss, and vote on features, ensuring that the best and most demanded features get the attention they deserve.
 
 Features
+
 Feature Proposal: Users can propose new features.
+
 Voting System: Upvote or downvote features based on your preference.
+
 Responsive Design: Seamless experience
 
 Getting Started
